@@ -4,11 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Grocery List</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
 </head>
 <body>
-    
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <table class="table table-striped table-info table-hover" id="list">
+                    <tr>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row text-center">
+            <form class="form-group">
+                <div class="col mt-3">
+                    <input type="text" id="item" placeholder="Item">
+                </div>
+                <div class="col mt-3">
+                    <input type="number" id="quantity" placeholder="Quantity">
+                </div>
+                <button id="additem" type="button" class="btn btn-success mt-3">Add Item</button>
+            </form>
+            
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 </body>
 </html>
