@@ -20,19 +20,20 @@ function addItem(item, quantity) {
 //takes the values of the item and quantity inputs and checks if they are empty
 //if empty alert out values are needed
 //then checks if items are already in list using checkItems() function
-//if items already exist in list alert out item exists please remove to change quantity
+//if items already exist in list createAlert() is called to add a styled alert
 //If item has a value and does not exist then addItem() is called to able row into table
 
 document.getElementById('additem').addEventListener('click', () => {
 
+    document.getElementById('alert').setAttribute('style', 'display:none')
     let item = document.getElementById('item').value
     let quantity = document.getElementById('quantity').value
 
     if(item == '' || quantity == ''){
-        alert(`Please enter an item and quantity`)
+        createAlert(item, quantity)
     }
     else if(checkItems(item)){
-        alert(`${item} is already in list, please remove and change quantity`)
+        createAlert(item, quantity)
     }
     else{
         addItem(item, quantity)
@@ -63,10 +64,36 @@ function createDeleteButton(itemID){
 //if a match is found return true
 
 function checkItems(item) {
-    let cells = document.querySelectorAll('td')
-    for (let i = 0; i < cells.length; i++) {
-        if(cells[i].textContent.toLowerCase() === item.toLowerCase()){
+    let rows = document.querySelectorAll('tr')
+    for (let i = 0; i < rows.length; i++) {
+        if(rows[i].cells[0].textContent.toLowerCase() === item.toLowerCase()){
             return true
         }
     }
+}
+
+//Creates the alert if an item is already in the list
+//adds a button to dismiss the alert which then hides the element using display:none
+
+function createAlert(item, quantity){
+    let alertButton = document.createElement('button')
+    alertButton.setAttribute('class', "btn-close")
+    alertButton.setAttribute('type', 'button')
+    alertButton.setAttribute('id', 'dismissButton')
+    alertButton.setAttribute('aria-label', 'close')
+    let alert = document.getElementById('alert')
+    alert.classList.add('show')
+    alert.setAttribute('style', 'display:block')
+    if(item === '' || quantity === ''){
+        alert.innerHTML = `Please enter an item and quantity`
+    }
+    else{
+    alert.innerHTML = `${item} is already in list, please remove and change quantity`
+    }
+    alert.appendChild(alertButton)
+    document.getElementById('dismissButton').addEventListener('click', () =>{
+        alert.classList.remove('show')
+        alert.classList.add('hidden')
+        alert.setAttribute('style', 'display:none')
+    })
 }
