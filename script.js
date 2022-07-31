@@ -82,7 +82,6 @@ function createAlert(item, quantity){
     alertButton.setAttribute('id', 'dismissButton')
     alertButton.setAttribute('aria-label', 'close')
     let alert = document.getElementById('alert')
-    alert.classList.add('show')
     alert.setAttribute('style', 'display:block')
     if(item === '' || quantity === ''){
         alert.innerHTML = `Please enter an item and quantity`
@@ -92,8 +91,6 @@ function createAlert(item, quantity){
     }
     alert.appendChild(alertButton)
     document.getElementById('dismissButton').addEventListener('click', () =>{
-        alert.classList.remove('show')
-        alert.classList.add('hidden')
         alert.setAttribute('style', 'display:none')
     })
 }
